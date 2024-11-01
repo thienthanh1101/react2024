@@ -42,7 +42,7 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .logo {
+.logo {
     animation: logo-spin infinite 20s linear;
   }
 }

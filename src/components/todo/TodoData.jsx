@@ -1,5 +1,5 @@
 const TodoData = (props) => {
-  //const TodoData = ({ name }) => {
+//const TodoData = ({ name }) => {
   //props is var object{}
   const { name, age, data } = props; // by other const name=props.name; const age=props.age;
   //console.log(">>> Check props:", props);
