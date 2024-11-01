@@ -7,7 +7,7 @@ const TodoNew = (props) => {
   const [valueInput, setValueInput] = useState("huynv");
   //addNewTod("huynv")//fire
   const handleClick = () => {
-    console.log(">>>Check valueInput", valueInput);
+    addNewTodo(valueInput);
   };
   const handleOnChange = (name) => {
     setValueInput(name);
