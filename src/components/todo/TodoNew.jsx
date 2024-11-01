@@ -1,12 +1,16 @@
-const Todonew = (props) => {
+import { useState } from "react";
+const TodoNew = (props) => {
   console.log(">>> Check: ", props);
   const { addNewTodo } = props;
+  //useState hook (getter/setter)
+  //const valueInput = "huynv";
+  const [valueInput, setValueInput] = useState("huynv");
   //addNewTod("huynv")//fire
   const handleClick = () => {
-    alert("Click me");
+    console.log(">>>Check valueInput", valueInput);
   };
   const handleOnChange = (name) => {
-    console.log(">>>handleOnChange", name);
+    setValueInput(name);
   };
   return (
     <div className="todo-new">
@@ -19,7 +23,8 @@ const Todonew = (props) => {
       <button style={{ cursor: "pointer" }} onClick={handleClick}>
         Add
       </button>
+      <div>My text input is = {valueInput} </div>
     </div>
   );
 };
-export default Todonew;
+export default TodoNew;
