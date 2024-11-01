@@ -42,7 +42,7 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-.logo {
+  .logo {
     animation: logo-spin infinite 20s linear;
   }
 }
@@ -53,4 +53,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+.todo-Item {
+  display: flex;
+  justify-content: space-between;
 }
