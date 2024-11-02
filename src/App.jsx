@@ -6,15 +6,15 @@ import { useState } from "react";
 
 const App = () => {
   const [todoList, setTodoList] = useState([
-    { id: 1, name: "Learning React" },
-    { id: 2, name: "Watching Youtube" },
+    // { id: 1, name: "Learning React" },
+    // { id: 2, name: "Watching Youtube" },
   ]);
-  const huynv = "Huynv";
-  const age = 25;
-  const data = {
-    address: "Ho Chi Minh",
-    contry: "Viet Nam",
-  };
+  //const huynv = "Huynv";
+  //const age = 25;
+  //const data = {
+  // address: "Ho Chi Minh",
+  // contry: "Viet Nam",
+  //};
   const addNewTodo = (name) => {
     const newTodo = { id: randomIntFromInterval(1, 1000000), name: name };
     setTodoList([...todoList, newTodo]);
@@ -28,7 +28,9 @@ const App = () => {
     <div className="todo-container">
       <div className="todo-title">Todo List</div>
       <TodoNew addNewTodo={addNewTodo} />
-      <TodoData name={huynv} age={age} data={data} todoList={todoList} />
+      <TodoData //name={huynv} age={age} data={data}
+        todoList={todoList}
+      />
       <div className="todo-image">
         <img src={reactLogo} className="logo" />
       </div>
