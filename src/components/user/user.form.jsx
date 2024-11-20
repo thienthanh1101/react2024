@@ -1,55 +1,72 @@
-import { Button, Input } from "antd";
+import { Button, Input, notification } from "antd";
 import { useState } from "react";
-import axios from "axios";
-function UserForm() {
-    const [fullName, setFullName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [phone, setPhone] = useState("");
-    const handleClickBtn = () => {
-        const URL_BACKEN="http://localhost:8080/api/v1/user";
-        const data={
-            fullName: fullName,
-            email: email,
-            password: password,
-            phone: phone
-        }
+import { createUserAPI } from "../../services/api.service";
 
-        axios.post(URL_BACKEN,data)
-        console.log(">>> check state: ", { fullName, email, password, phone });
-    };
-    return (
-        <div className="user-form" style={{ margin: "20px 0" }}>
-            <div style={{ display: "flex", gap: "10px", flexDirection: "column" }}>
-                <div>
-                    <span>FullName</span>
-                    <Input  value={fullName}
-                        onChange={(event) => { setFullName(event.target.value) }} />
-                    
-                </div>
-                <div>
-                    <span>Email</span>
-                    <Input value={email}
-                        onChange={(event) => { setEmail(event.target.value) }}/>
-                </div>
-                <div>
-                    <span>Password</span>
-                    <Input.Password value={password}
-                        onChange={(event) => {setPassword(event.target.value) }}/>
-                </div>
-                <div>
-                    <span>Phone Number</span>
-                    <Input value={phone}
-                        onChange={(event) => { setPhone(event.target.value) }}/>
-                </div>
-                <div>
-                    <Button
-                        // onClick={() => handleClickBtn()}
-                        onClick={handleClickBtn}
-                        type="primary"> Create User </Button>
-                </div>
-            </div>
+function UserForm() {
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const handleClickBtn = async() => {
+   const res = await createUserAPI(fullName, email, password, phone);
+   if (res.data){
+     notification.success({
+        message: "create user",
+        description: "Tạo mới User thành công"
+   })}
+    console.log(">>> check res: ", res.data )
+  };
+  return (
+    <div className="user-form" style={{ margin: "20px 0" }}>
+      <div style={{ display: "flex", gap: "10px", flexDirection: "column" }}>
+        <div>
+          <span>FullName</span>
+          <Input
+            value={fullName}
+            onChange={(event) => {
+              setFullName(event.target.value);
+            }}
+          />
         </div>
-    );
+        <div>
+          <span>Email</span>
+          <Input
+            value={email}
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+          />
+        </div>
+        <div>
+          <span>Password</span>
+          <Input.Password
+            value={password}
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
+          />
+        </div>
+        <div>
+          <span>Phone Number</span>
+          <Input
+            value={phone}
+            onChange={(event) => {
+              setPhone(event.target.value);
+            }}
+          />
+        </div>
+        <div>
+          <Button
+            // onClick={() => handleClickBtn()}
+            onClick={handleClickBtn}
+            type="primary"
+          >
+            {" "}
+            Create User{" "}
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
 }
 export default UserForm;
