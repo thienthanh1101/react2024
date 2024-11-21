@@ -11,10 +11,13 @@ function UserForm() {
    const res = await createUserAPI(fullName, email, password, phone);
    if (res.data){
      notification.success({
-        message: "create user",
+        message: "Create user",
         description: "Tạo mới User thành công"
-   })}
-    console.log(">>> check res: ", res.data )
+   })} else { notification.error({
+        message: "Error create user",
+        description: JSON.stringify(res.message)
+       })
+       }
   };
   return (
     <div className="user-form" style={{ margin: "20px 0" }}>
