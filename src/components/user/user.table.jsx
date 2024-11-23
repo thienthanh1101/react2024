@@ -2,9 +2,7 @@ import { Table } from 'antd';
 import { fetchAllUserAPI } from '../../services/api.service';
 import { useEffect, useState } from 'react';
 const UserTable = () =>{
-  const [dataUser,setDataUser]=useState([{
-    _id:"1",fullName: "huy",email:"huy",phone:"090",role:"1"
-  }]);
+  const [dataUser,setDataUser]=useState([]);
   //empty array= run one khong được sử dụng hàm async and await trong useEffect
   useEffect(()=>{
     console.log("Run useEffect 111")
