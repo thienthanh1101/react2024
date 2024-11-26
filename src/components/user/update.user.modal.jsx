@@ -40,7 +40,6 @@ const UpdateUserModal = (props) => {
         setPhone("");
         setDataUpdate(null);
     }
-   
     return (
         <Modal
             title="Update a User"
