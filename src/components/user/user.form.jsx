@@ -10,7 +10,7 @@ function UserForm(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
-  const [isModalOpen, setIsModalOpen]=useState(true);
+  const [isModalOpen, setIsModalOpen]=useState(false);
   const handleSubmitBtn = async() => {
       const res = await createUserAPI(fullName, email, password, phone);
    if (res.data){

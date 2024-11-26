@@ -16,7 +16,10 @@ const UserPage = () => {
   //lift-up state <>pull up
   return (<div style={{padding:"20px"}}>
       <UserForm loadUser={loadUser}/>
-      <UserTable dataUser={dataUser}/> 
+      <UserTable 
+      dataUser={dataUser}
+      loadUser={loadUser}
+      /> 
   </div>)
 };
 export default UserPage;
