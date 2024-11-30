@@ -15,6 +15,17 @@ const UserTable = (props) =>{
     const [isDetailOpen, setIsDetailOpen] = useState(false);
 
     const columns = [
+      {
+        title: "STT",
+        render: (_, record,index) => {
+          console.log("check index:",index )
+          return(
+            <>
+            {++index}
+            </>
+          )
+        }
+      },
     {
         title: 'ID',
         dataIndex: '_id',
