@@ -1,8 +1,6 @@
 import { Button, Input, notification, Modal } from "antd";
 import { useState } from "react";
 import { createUserAPI } from "../../services/api.service";
-import { AlertTwoTone } from "@ant-design/icons";
-import { Await } from "react-router-dom";
 
 function UserForm(props) {
   const {loadUser}=props;
@@ -88,7 +86,7 @@ function UserForm(props) {
             }}
           />
         </div>
-     </Modal>
+      </Modal>
     </div>
   );
 }
