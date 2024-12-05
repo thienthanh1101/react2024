@@ -1,8 +1,10 @@
-import { Link,NavLink } from "react-router-dom";
-import {FolderOpenOutlined, HomeOutlined, UsergroupAddOutlined } from '@ant-design/icons';
+import { Link} from "react-router-dom";
+import {AuditOutlined, HomeOutlined, SettingOutlined, UsergroupAddOutlined } from '@ant-design/icons';
 //import "./header.css";
 import {Menu} from "antd";
 import { useState } from "react";
+//import { icons } from "antd/es/image/PreviewGroup";
+//import { spaceChildren } from "antd/es/button";
 const Header = () => {
   const [current, setCurrent] = useState('mail');
   const onClick = (e) => {
@@ -24,7 +26,22 @@ const Header = () => {
     {
       label: <Link to={"/books"}> Books </Link>,
       key: 'books',
-      icon: <FolderOpenOutlined />,
+      icon: <AuditOutlined/>,
+    },
+    {
+      label: "Cài đặt",
+      key: "setting",
+      icons: <SettingOutlined/>,
+      spaceChildren: [
+        {
+          label: <Link to={"/login"}>Đăng nhập</Link>,
+          key:"login",
+        },
+        {
+          label: "Đăng xuất",
+          key: "logout",
+        }
+      ]
     },
   ];
   return (
