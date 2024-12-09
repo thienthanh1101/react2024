@@ -2,11 +2,14 @@ import { Link} from "react-router-dom";
 import {AuditOutlined, HomeOutlined, SettingOutlined, UsergroupAddOutlined } from '@ant-design/icons';
 //import "./header.css";
 import {Menu} from "antd";
-import { useState } from "react";
+import {useContext, useState } from "react";
+import { AuthContext } from "../context/authcontext";
 //import { icons } from "antd/es/image/PreviewGroup";
 //import { spaceChildren } from "antd/es/button";
 const Header = () => {
   const [current, setCurrent] = useState('mail');
+  const {user} = useContext(AuthContext);
+  console.log("check data:",user)
   const onClick = (e) => {
     console.log('click ', e);
     setCurrent(e.key);
@@ -25,32 +28,32 @@ const Header = () => {
     },
     {
       label: <Link to={"/books"}> Books </Link>,
-      key: 'books',
+      key: "books",
       icon: <AuditOutlined/>,
     },
     {
-      label: "Cài đặt",
+      label: "Setting",
       key: "setting",
-      icons: <SettingOutlined/>,
-      spaceChildren: [
+      icon: <SettingOutlined/>,
+      children: [
         {
-          label: <Link to={"/login"}>Đăng nhập</Link>,
+          label: <Link to={"/login"}>Login</Link>,
           key:"login",
         },
         {
-          label: "Đăng xuất",
+          label: "Logout",
           key: "logout",
         }
       ]
     },
   ];
   return (
-       <Menu 
-       onClick={onClick} 
-       selectedKeys={[current]} 
-       mode="horizontal" 
-       items={items} 
-       />
+<Menu 
+onClick={onClick}
+selectedKeys={[current]}
+mode="horizontal"
+items={items}
+/>
   );
 };
 export default Header;
