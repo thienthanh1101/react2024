@@ -19,7 +19,7 @@ const PrivateRoute=(props)=>{
         title="Unauthorize!"
         subTitle="You need to log in to access this resource."
         extra={<Button type="primary">
-          <Link to="/"><span>Back to homepage</span></Link></Button>}
+        <Link to="/"><span>Back to homepage</span></Link></Button>}
         />)
 }
 export default PrivateRoute;
