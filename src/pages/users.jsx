@@ -23,7 +23,7 @@ const UserPage = () => {
     }
     
   }
-  console.log("Check pageSize",pageSize)
+  //console.log("Check pageSize",pageSize)
   //lift-up state <>pull up
   return (<div style={{padding:"20px"}}>
       <UserForm loadUser={loadUser}/>

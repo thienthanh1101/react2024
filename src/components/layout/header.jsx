@@ -1,17 +1,14 @@
 import { Link} from "react-router-dom";
-import {AuditOutlined, HomeOutlined, SettingOutlined, UsergroupAddOutlined } from '@ant-design/icons';
-//import "./header.css";
+import {AliwangwangOutlined, AuditOutlined, HomeOutlined, LoginOutlined, UsergroupAddOutlined } from '@ant-design/icons';
 import {Menu} from "antd";
 import {useContext, useState } from "react";
-import { AuthContext } from "../context/authcontext";
-//import { icons } from "antd/es/image/PreviewGroup";
-//import { spaceChildren } from "antd/es/button";
+import { AuthContext } from "../context/auth.context";
 const Header = () => {
   const [current, setCurrent] = useState('mail');
   const {user} = useContext(AuthContext);
-  console.log("check data:",user)
+ // console.log("check data:",user)
   const onClick = (e) => {
-    console.log('click ', e);
+  // console.log('click ', e);
     setCurrent(e.key);
   };
   const items = [
@@ -31,21 +28,30 @@ const Header = () => {
       key: "books",
       icon: <AuditOutlined/>,
     },
-    {
-      label: "Setting",
-      key: "setting",
-      icon: <SettingOutlined/>,
-      children: [
-        {
-          label: <Link to={"/login"}>Login</Link>,
+    // {
+    //   label: "Setting",
+    //   key: "setting",
+    //   icon: <LoginOutlined/>,
+    //   //icon: <SettingOutlined/>,
+    // },
+    ...(!user.id ?[{
+      label: <Link to={"/login"}>Login</Link>,
           key:"login",
-        },
+          icon: <LoginOutlined/>,
+    }]:[]),
+    
+    ...(user.id ?[{
+      label: `Welcome ${user.fullName}`,
+      key: "setting",
+      icon: <AliwangwangOutlined/>,
+      children:[
         {
           label: "Logout",
-          key: "logout",
+          key:"logout",
         }
       ]
-    },
+    }]:[]),
+        
   ];
   return (
 <Menu 

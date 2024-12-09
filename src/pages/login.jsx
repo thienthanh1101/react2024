@@ -3,7 +3,7 @@ import { Button, Form, Input, Row, Col, Divider, message, notification } from "a
 import { Link, useNavigate } from "react-router-dom";
 import { loginAPI } from "../services/api.service";
 import { useContext, useState } from "react";
-import { AuthContext } from "../components/context/authcontext";
+import { AuthContext } from "../components/context/auth.context";
 
 const LoginPage = () => {
     const [form] = Form.useForm();
@@ -11,20 +11,20 @@ const LoginPage = () => {
     const navigate = useNavigate();
     const {setUser} = useContext(AuthContext);
     const onFinish = async(values) => {
-      setLoading(true);
-      const res = await loginAPI(values.email,values.password);
-      if(res.data){
+    setLoading(true);
+    const res = await loginAPI(values.email,values.password);
+    if(res.data){
         message.success("Đăng nhập thành công")
         localStorage.setItem("access_token",res.data.access_token);//save local browser computer
         setUser(res.data.user);
         navigate("/");
-      }else{
+    }else{
         notification.error({
-          message:"Error Login",
-          description: JSON.stringify(res.message)
+        message:"Error Login",
+        description: JSON.stringify(res.message)
         })
-      }
-      setLoading(false);
+    }
+    setLoading(false);
     }
     return (
         <Row justify={"center"} style={{ marginTop: "30px" }}>
@@ -67,7 +67,11 @@ const LoginPage = () => {
                                 },
                             ]}
                         >
-                            <Input.Password />
+                            <Input.Password onKeyDown={(event)=>{
+                                if (event.key==="Enter"){
+                                    form.submit()
+                                }
+                            }}/>
                         </Form.Item>
                         <Form.Item >
                             <div style={{

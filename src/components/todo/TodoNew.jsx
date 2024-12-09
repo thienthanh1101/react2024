@@ -1,6 +1,6 @@
 import { useState } from "react";
 const TodoNew = (props) => {
-  console.log(">>> Check: ", props);
+  //console.log(">>> Check: ", props);
   const { addNewTodo } = props;
   //useState hook (getter/setter)
   //const valueInput = "huynv";
