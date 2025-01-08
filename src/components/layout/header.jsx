@@ -18,7 +18,7 @@ const Header = () => {
     if(res.data){
       //clear data
       localStorage.removeItem("access_token");
-      setUser({ 
+      setUser({
         email: "",
         phone: "",
         fullName: "",
@@ -29,7 +29,6 @@ const Header = () => {
       message.success("Logout success");
       //redirect User to homepage
       navigate("/");
-
     }
   }
   const items = [
