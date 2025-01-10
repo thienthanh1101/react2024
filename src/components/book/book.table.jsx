@@ -1,10 +1,12 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Button, Popconfirm, Table } from "antd";
+import { Button, Popconfirm, Table,notification } from "antd";
 import { useEffect, useState } from "react";
-import { fetchAllBookAPI } from "../../services/api.service";
 import BookDetail from "./book.detail";
-import CreateBookControl from "./create.book.control";
+//import CreateBookControl from "./create.book.control";
 import CreateBookUncontrol from "./create.book.uncontrol";
+//import UpdateBookControl from "./update.book.control";
+import UpdateBookUncontrol from "./update.book.uncontrol";
+import { deleteBookAPI, fetchAllBookAPI } from "../../services/api.service";
 const BookTable = () => {
     const [dataBook, setDataBook] = useState([]);
     const [current, setCurrent] = useState(1);
@@ -27,7 +29,21 @@ const BookTable = () => {
             setTotal(res.data.meta.total);
         }
     }
-    const handleDeleteBook = async(id) => {
+   // const handleDeleteBook = async(id) => {}
+    const handleDeleteBook = async (id) => {
+        const res = await deleteBookAPI(id);
+        if (res.data) {
+            notification.success({
+                message: "Delete book",
+                description: "Xóa book thành công"
+            })
+            await loadBook();
+        } else {
+            notification.error({
+                message: "Error delete book",
+                description: JSON.stringify(res.message)
+            })
+        }
     }
     const onChange = (pagination, filters, sorter, extra) => {
         // setCurrent, setPageSize
@@ -155,7 +171,20 @@ const BookTable = () => {
                 setIsCreateOpen={setIsCreateOpen}
                 loadBook={loadBook}
             />
-            
+            {/*<UpdateBookControl
+                dataUpdate={dataUpdate}
+                setDataUpdate={setDataUpdate}
+                isModalUpdateOpen={isModalUpdateOpen}
+                setIsModalUpdateOpen={setIsModalUpdateOpen}
+                loadBook={loadBook}
+            />*/}
+            <UpdateBookUncontrol
+                dataUpdate={dataUpdate}
+                setDataUpdate={setDataUpdate}
+                isModalUpdateOpen={isModalUpdateOpen}
+                setIsModalUpdateOpen={setIsModalUpdateOpen}
+                loadBook={loadBook}
+            />
         </>
     )
 }
